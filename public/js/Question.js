@@ -76,9 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
             { name: "Vegita", color: "rgb(252, 46, 251)" },
             { name: "Goku", color: "rgb(30, 51, 149)" },
         ];
-
+        const defined = ["😔", 'Average', 'Brilliant', 'Genius:'] 
         let getPoint;
-        if (correct >= 0 && correct <= 3) {
+        if (correct > 0 && correct <= 3) {
             getPoint = 0;
         } else if (correct >= 4 && correct <= 6) {
             getPoint = 1;
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 break;
         }
 
-        you.innerHTML = selectedArray[getPoint].name;
+        you.innerHTML = defined[getPoint];
         rite.innerHTML = correct;
         mainImg.src = `${imgPath}${imgArray[getPoint]}.png`;
         document.documentElement.style.setProperty(
