@@ -6,7 +6,7 @@ click.addEventListener("click", (e) => {
         window.location.href = "/login";
     } else if (change.innerHTML == "Logout") {
         localStorage.clear();
-        window.location.reload();
+        window.location.href = '/login';
     }
 });
 if (login == "false") {

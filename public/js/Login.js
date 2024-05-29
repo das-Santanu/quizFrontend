@@ -14,6 +14,37 @@ function decryptData(encryptedData, key, iv) {
     }).toString(CryptoJS.enc.Utf8);
     return decrypted;
 }
+function pop_up(text, img = 'https://res.cloudinary.com/derr70tq5/image/upload/v1716995797/image/login/wrong.png', color = 'rgb(255,0,0)') {
+    colors.style.backgroundColor = color;
+    image.src = img;
+    popUp.innerHTML = text;
+    anime({
+        targets: poup,
+        translateY: [
+            { value: '-100%', duration: 0 },
+            { value: 150, duration: 100 },
+            { value: 150, duration: 700 },
+            { value: '-100%', duration: 800 },
+        ],
+        easing: "easeInOutQuad",
+        autoplay: true,
+    });
+    anime({
+        targets: ".divpo",
+        width: [
+            { value: "0%", duration: 0 },
+            { value: "0%", duration: 200 },
+            { value: "100%", duration: 700 },
+        ],
+        easing: "easeInOutQuad",
+        autoplay: true,
+    });
+}
+const poup = document.querySelector(".poup");
+const popUp = document.querySelector(".pop-up");
+const btns = document.querySelectorAll("button");
+const colors = document.querySelector(".divpo");
+const image = document.querySelector(".pop");
 const PRIVATE_KEY = "3ad178cc74c0e7e4269f0d494218260c67c6be286d5de06024c4067df555dcc9";
 const __key = CryptoJS.enc.Utf8.parse(PRIVATE_KEY)
 const IV = '88447e9916c48e4ad0ad6c124030c01f';
@@ -22,10 +53,11 @@ const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
 const loader = document.querySelector(".loader");
+const correctImage = 'https://res.cloudinary.com/derr70tq5/image/upload/v1716995797/image/login/correct.png'
+const correctColor = 'rgb(0,255,0)'
 sign_up_btn.addEventListener("click", () => {
     container.classList.add("sign-up-mode");
 });
-
 sign_in_btn.addEventListener("click", () => {
     container.classList.remove("sign-up-mode");
 });
@@ -35,7 +67,7 @@ sign_in_btn.addEventListener("click", () => {
 async function createValidataName(name) {
     if (name.length >= 3 && name.length <= 12) {
         let userData;
-        await fetch(`http://localhost:4000/api/user/name/${name}`)
+        await fetch(`https://quizbackend-efbo.onrender.com/api/user/name/${name}`)
             .then((respnse) => {
                 if (!respnse.ok) {
                     throw new Error("Network response was not ok");
@@ -57,14 +89,15 @@ async function createValidataName(name) {
             };
         }
     } else {
-        alert("user name must be 3 to 12 letters");
+        let msg = "Your username should be 3-12 characters long"
+        pop_up(msg)
     }
 }
 
 async function createEmailValidate(email) {
     var regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (regex.test(email)) {
-        let userData = await fetch(`http://localhost:4000/api/email/${email}`)
+        let userData = await fetch(`https://quizbackend-efbo.onrender.com/api/email/${email}`)
             .then((res) => res.json())
             .then((data) => data)
             .catch((err) => console.error(err));
@@ -77,7 +110,8 @@ async function createEmailValidate(email) {
             };
         }
     } else {
-        alert("Please Enter correct email");
+        let msg = "Email already used in another Account"
+        pop_up(msg)
     }
 }
 
@@ -106,7 +140,7 @@ function checkPassword(password) {
 
 async function createUser(data) {
     try {
-        const response = await fetch("http://localhost:4000/create", {
+        const response = await fetch("https://quizbackend-efbo.onrender.com/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -158,19 +192,27 @@ sign.addEventListener("submit", async (e) => {
 
         let value = await createUser(data);
         if (value) {
-            alert("User created successfully!");
-            window.location.reload();
+            let msg = "Welcome!<br />Your account has been successfully created"
+            pop_up(msg, correctImage, correctColor)
+            setTimeout(() => {
+                window.location.reload()
+            }, 1500)
         } else {
-            alert("Error creating user");
+            let msg = "There seems to be a temporary glitch.<br />Please refresh the page and try again"
+            pop_up(msg)
             loader.classList.remove("loaderAnimation");
         }
     } else {
-        if (checkName !== true) alert("Username already taken");
+        if (checkName !== true) pop_up("Username unavailable");
         if (checkMail !== true)
-            alert("Email already used in another Account");
-        if (checkPass !== true) alert("Password not strong enough");
+            pop_up("Email already used in another Account");
+        if (checkPass !== true) pop_up(" Please create a password<br />with at least 8 characters including capital letter<br />a number, and a special character");
         loader.classList.remove("loaderAnimation");
     }
+    setTimeout(() => {
+        let msg = "There seems to be a temporary glitch.<br />Please refresh the page and try again"
+        pop_up(msg)
+    }, 60000)
 });
 
 /* ------------------- Sign Up Process End ------------------------- */
@@ -178,7 +220,7 @@ sign.addEventListener("submit", async (e) => {
 /* ------------------- Login Process Start ------------------------- */
 
 async function findAccount(name) {
-    let userData = await fetch(`http://localhost:4000/api/user/name/${name}`)
+    let userData = await fetch(`https://quizbackend-efbo.onrender.com/api/user/name/${name}`)
         .then((respnse) => {
             if (!respnse.ok) {
                 throw new Error("Network response was not ok");
@@ -219,14 +261,20 @@ login.addEventListener("submit", async (e) => {
         if (checkAccount.data.UserPassword === passEnc) {
             let login = true;
             localStorage.setItem("login", login);
-            alert("login SuccessFull");
-            window.location.href = "/";
+            pop_up("Welcome back! You're successfully logged in", correctImage, correctColor);
+            setInterval(() => {
+                window.location.href = "/";
+            }, 1500)
         } else {
-            alert("Wrong Password");
+            pop_up("Oops! The password you entered is incorrect");
             loader.classList.remove("loaderAnimation");
         }
     } else {
-        alert("Username not found");
+        pop_up("The username you entered could not be found");
         loader.classList.remove("loaderAnimation");
     }
+    setTimeout(() => {
+        let msg = "There seems to be a temporary glitch.<br />Please refresh the page and try again"
+        pop_up(msg)
+    }, 60000)
 });
