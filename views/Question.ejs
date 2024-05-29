@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz</title>
+    <link rel="stylesheet" href="css/Question.css">
+</head>
+<body>
+    <div class="spiner">
+        <span class="loader"></span>
+      </div>
+      <div class="dark"></div>
+      <div class="result">
+        <div class="div">
+          <div class="image">
+            <img src="./img/easy/1_3.png" />
+          </div>
+  
+          <div class="inner-div">
+            <div class="text-wrap">
+              <h1>You are <span>Yagami</span></h1>
+              <p>You correct <span>3</span> quisten out of 10</p>
+            </div>
+          </div>
+          <div class="begain-wrap">
+            <p>PLay again to be a</p>
+            <div class="img-wrap"></div>
+          </div>
+          <div class="btn-wrap">
+            <button class="restart">Restart</button>
+          </div>
+        </div>
+      </div>
+      <video src="https://res.cloudinary.com/derr70tq5/video/upload/v1716893485/image/question/day.mp4" id="bg-v" autoplay muted loop></video>
+      <div id="display-container">
+        <div class="header">
+          <div class="number-of-count">
+            <span class="number-of-question">1 of 3 questions</span>
+          </div>
+          <div class="timer-div">
+            <img src="https://res.cloudinary.com/derr70tq5/image/upload/v1716893459/image/question/stop%20watch.png" class="clock" />
+            <span class="time-left">10s</span>
+          </div>
+        </div>
+        <div id="container">
+          <!-- questions and options will be displayed here -->
+        </div>
+        <button id="next-button">Next</button>
+      </div>
+    <script src="/js/Question.js"></script>
+</body>
+</html>

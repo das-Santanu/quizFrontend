@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizzyQuest</title>
+    <link rel="stylesheet" type="text/css" href="/css/Home.css" />
+</head>
+<body>
+    <nav>
+        <div class="left-nav">
+          <p>Quizzy<span>Quest</span></p>
+        </div>
+        <div class="right-nav">
+          <button class="nav-btn">
+            <span>Login</span>
+            <div class="amim"></div>
+          </button>
+        </div>
+      </nav>
+      <main>
+        <div class="left-main">
+          <div class="up-text">
+            <p>Improve<br />your mind</p>
+          </div>
+          <div class="dn-text">
+            <p>
+              Do you like quizes and competitions?<br />Find or create quize on
+              any topic!
+            </p>
+          </div>
+        </div>
+        <div class="right-main">
+          <img
+            src="https://res.cloudinary.com/derr70tq5/image/upload/v1716871477/image/home/icon.png"
+            class="main-icon"
+            data-tilt
+            data-tilt-max="10"
+            data-tilt-speed="500"
+            data-tilt-perspective="500"
+          />
+        </div>
+      </main>
+      <div class="dificulty">
+        <div
+          class="easy box"
+          data-tilt
+          data-tilt-max="10"
+          data-tilt-speed="500"
+          data-tilt-perspective="500"
+        >
+          <p>Play as a Begginer!<br />Easy</p>
+          <img src="https://res.cloudinary.com/derr70tq5/image/upload/v1716871467/image/home/blue.png" class="box-img md" />
+          <div class="button" id="easy">
+            <p id="easy">Play</p>
+            <img src="https://res.cloudinary.com/derr70tq5/image/upload/v1716871466/image/home/arrow.png" id="easy" class="next-i" />
+          </div>
+        </div>
+        <div
+          class="medium box"
+          data-tilt
+          data-tilt-max="10"
+          data-tilt-speed="500"
+          data-tilt-perspective="500"
+        >
+          <p>Play as a intermediate!<br />Medium</p>
+          <img src="https://res.cloudinary.com/derr70tq5/image/upload/v1716871466/image/home/yellow.png" class="box-img" />
+          <div class="button" id="medium">
+            <p id="medium">Play</p>
+            <img src="https://res.cloudinary.com/derr70tq5/image/upload/v1716871466/image/home/arrow.png" id="medium" class="next-i" />
+          </div>
+        </div>
+        <div
+          class="hard box"
+          data-tilt
+          data-tilt-max="10"
+          data-tilt-speed="500"
+          data-tilt-perspective="500"
+        >
+          <p>Play as a Pro!<br />Hard</p>
+          <img src="https://res.cloudinary.com/derr70tq5/image/upload/v1716871467/image/home/red.png" class="box-img md" />
+          <div class="button" id="hard">
+            <p id="hard">Play</p>
+            <img src="https://res.cloudinary.com/derr70tq5/image/upload/v1716871466/image/home/arrow.png" class="next-i" id="hard" />
+          </div>
+        </div>
+      </div>
+      <script src="/framework/tilt.min.js"></script>
+      <script src="/framework/anime.min.js"></script>
+      <script src="/js/Home.js"></script>
+</body>
+</html>
