@@ -10,7 +10,15 @@ app.use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs');
 
-
+// Middleware to store visited routes in session
+  const storeVisitedRoutes = (req, res, next) => {
+    if (!req.session.visitedRoutes) {
+      req.session.visitedRoutes = [];
+    }
+    req.session.visitedRoutes.push(req.path);
+    next();
+  };
+  
 const checkRoutesSequence = (req, res, next) => {
   if (req.session.visitedRoutes) {
     const previousRoute = req.session.visitedRoutes[req.session.visitedRoutes.length - 1];
@@ -29,14 +37,7 @@ const checkRoutesSequence = (req, res, next) => {
   }
 };
 
-// Middleware to store visited routes in session
-const storeVisitedRoutes = (req, res, next) => {
-  if (!req.session.visitedRoutes) {
-    req.session.visitedRoutes = [];
-  }
-  req.session.visitedRoutes.push(req.path);
-  next();
-};
+
 
 
 

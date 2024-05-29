@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "node index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "deploy": "npx vercel"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +14,8 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "vercel": "^34.2.3"
   }
 }
